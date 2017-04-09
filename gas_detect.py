@@ -3,6 +3,7 @@ import time, sys, signal, atexit
 from upm import pyupm_gas as upmGas
 import sms_notify
 import os
+from time import sleep
 
 # Values are mean of 1000 readings
 mq3_norm = 899.0575
@@ -37,13 +38,15 @@ def passive_scan():
 
     if new_pid == 0:
         level = get_mq3_level()
-        while (level < (mq3_norm * 0.65)):
+        while (level > (mq3_norm * 0.65)):
+            time.sleep(30)
             level = get_mq3_level()
         sms_notify.send_gas_detected("MQ3 Alcohol, Ethanol, Smoke Sensor")
         return
     else:
         level = get_mq5_level()
-        while (level < (mq5_norm * 0.65)):
+        while (level > (mq5_norm * 0.65)):
+            time.sleep(30)
             level = get_mq5_level()
         sms_notify.send_gas_detected("MQ5 Natural Gas and Liquefied Petroleum Gas (LPG) Sensor")
         return
