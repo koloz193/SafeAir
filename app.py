@@ -22,6 +22,7 @@ def sms_reply():
         mq3 = get_mq3_level()
         mq5 = get_mq5_level()
         m = "Current MQ3 Level is: " + str(mq3) + ". Current MQ5 Level is: " + str(mq5) + "."
+        resp.message(m)
     elif (body == "Passive Scan"):
         gas_detect.passive_scan()
     else:
