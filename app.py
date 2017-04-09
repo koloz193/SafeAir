@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect
 from twilio import twiml
 from gas_detect import get_mq3_level, get_mq5_level, passive_scan
+import os
 
 app = Flask(__name__)
 
@@ -23,10 +24,8 @@ def sms_reply():
         mq5 = get_mq5_level()
         m = "Current MQ3 Level is: " + str(mq3) + ". Current MQ5 Level is: " + str(mq5) + "."
         resp.message(m)
-    elif (body == "Passive Scan"):
-        gas_detect.passive_scan()
     else:
-        resp.message("Reply 'MQ3 Level' | 'MQ5 Level' | 'Full Scan' | 'Passive Scan'")
+        resp.message("Reply 'MQ3 Level' | 'MQ5 Level' | 'Full Scan'")
 
     return str(resp)
 
