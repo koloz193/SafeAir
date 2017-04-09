@@ -37,13 +37,13 @@ def passive_scan():
 
     if new_pid == 0:
         level = get_mq3_level()
-        while (level > (mq3_norm * 0.9)):
+        while (level < (mq3_norm * 0.9)):
             level = get_mq3_level()
         sms_notify.send_gas_detected("MQ3 Alcohol, Ethanol, Smoke Sensor")
         return
     else:
         level = get_mq5_level()
-        while (level > (mq5_norm * 0.9)):
+        while (level < (mq5_norm * 0.9)):
             level = get_mq5_level()
         sms_notify.send_gas_detected("MQ5 Natural Gas and Liquefied Petroleum Gas (LPG) Sensor")
         return
