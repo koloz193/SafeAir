@@ -10,11 +10,11 @@ def sms_reply():
 
     resp = twiml.Response()
 
-    if (body == "Level of MQ3"):
+    if (body == "MQ3 Level"):
         m = get_mq3_level()
         m = "Current MQ3 Level is: " + str(m) + "."
         resp.message(m)
-    elif (body == "Level of MQ5"):
+    elif (body == "MQ5 Level"):
         m = get_mq5_level()
         m = "Current MQ5 Level is: " + str(m) + "."
         resp.message(m)
@@ -25,7 +25,7 @@ def sms_reply():
     elif (body == "Passive Scan"):
         gas_detect.passive_scan()
     else:
-        resp.message("Reply 'Level of MQ3' | 'Level of MQ5' | 'Full Scan' | 'Passive Scan'")
+        resp.message("Reply 'MQ3 Level' | 'MQ5 Level' | 'Full Scan' | 'Passive Scan'")
 
     return str(resp)
 
